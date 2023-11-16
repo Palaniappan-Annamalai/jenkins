@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jenkins-demo</name>
 	<description>Demo project for Spring Boot</description>
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -40,6 +41,41 @@
 					</image>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version> <!-- Use the latest version available -->
+				<executions>
+					<!--
+                        The 'prepare-agent' goal is bound to the 'initialize' phase by default.
+                        This configures the JaCoCo agent to collect coverage information.
+                    -->
+					<execution>
+						<id>prepare-agent</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+
+					<!--
+                        The 'report' goal is bound to the 'verify' phase by default.
+                        This generates the code coverage report.
+                    -->
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- Additional Configuration Options -->
+					<outputDirectory>${project.build.directory}/jacoco-reports</outputDirectory>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
