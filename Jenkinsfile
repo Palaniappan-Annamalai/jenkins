@@ -23,5 +23,33 @@ pipeline{
                 sh 'mvn test'
             }
         }
+
+        stage('CHECKSTYLE REPORT'){
+            steps{
+              sh 'mvn checkstyle:checkstyle'
+            }
+        }
+
+        stage('UPLOAD REPORTS TO SONARQUBE'){
+            environment{
+              sonarScanner = tool 'sonar'
+            }
+            steps{
+              withSonarQubeEnv('SonarServer') {
+                                      sh """
+                                               ${sonarScanner}/bin/sonar-scanner \
+                                              -Dsonar.junit.reportPaths=target/surefire-reports/*.xml \
+                                              -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-reports/jacoco.xml \
+                                              -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
+                                              -Dsonar.projectKey=Jenkins \
+                                              -Dsonar.projectName=Jenkins \
+                                              -Dsonar.projectVersion=1.0 \
+                                              -Dsonar.sources=src \
+                                              -Dsonar.java.binaries=target/classes
+                                      """
+                                 }
+
+            }
+        }
     }
 }
