@@ -59,5 +59,12 @@ pipeline{
               }
             }  
         }
+
+        stage('Deploy'){
+            steps{
+                sh 'cd target'
+                sh 'java -jar jenkins-*.jar'
+            }
+        }
     }
 }
