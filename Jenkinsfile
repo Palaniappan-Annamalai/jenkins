@@ -62,9 +62,7 @@ pipeline{
 
         stage('Deploy'){
             steps{
-                sh '''cd target \
-                      java -jar jenkins-*.jar
-                    '''
+                sh 'java -jar target/jenkins-*.jar'
             }
         }
     }
