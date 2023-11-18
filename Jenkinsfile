@@ -73,7 +73,7 @@ pipeline{
                     artifacts: [
                         // Define your artifacts here
                         [artifactId: 'jenkins-demo', 
-                         file: 'target/jenkins-*.jar', 
+                         file: 'target/jenkins-demo-0.0.1-SNAPSHOT.jar', 
                          type: 'jar']
                     ]
                 )
