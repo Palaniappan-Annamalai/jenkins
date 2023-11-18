@@ -65,13 +65,12 @@ pipeline{
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: 'http://192.168.29.186:8081/',
+                    nexusUrl: '192.168.29.186:8081',
                     groupId: 'com.cs',
                     version: '${env.BUILD_ID}',
                     repository: 'Jenkins-Repo',
                     credentialsId: 'nexus-id',
                     artifacts: [
-                        // Define your artifacts here
                         [artifactId: 'jenkins-demo', 
                          file: 'target/jenkins-demo-0.0.1-SNAPSHOT.jar', 
                          type: 'jar']
