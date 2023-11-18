@@ -67,6 +67,7 @@ pipeline{
                     protocol: 'http',
                     nexusUrl: '192.168.29.186:8081',
                     groupId: 'com.cs',
+                    version: '${env.BUILD_ID}-SNAPSHOT.jar',
                     repository: 'Jenkins-Repo',
                     credentialsId: 'nexus-id',
                     artifacts: [
