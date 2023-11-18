@@ -45,9 +45,7 @@ pipeline{
                                               -Dsonar.projectVersion=1.0 \
                                               -Dsonar.sources=src \
                                               -Dsonar.java.binaries=target/classes \
-                                              -Dsonar.language=java \
-                                              -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
-                                              -Dsonar.tests=test
+                                              -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
                                       """
                                  }
 
