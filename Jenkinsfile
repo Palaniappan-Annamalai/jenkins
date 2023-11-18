@@ -61,13 +61,16 @@ pipeline{
         }
 
         stage('Publish to Nexus') {
+            environment{
+                VERSION  = "${env.BUILD_ID}-SNAPSHOT"
+            }
             steps {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
                     nexusUrl: '192.168.29.186:8081',
                     groupId: 'com.cs',
-                    version: "${env.BUILD_ID}-SNAPSHOT",
+                    version: VERSION,
                     repository: 'Jenkins-Repo',
                     credentialsId: 'nexus-id',
                     artifacts: [
