@@ -24,11 +24,11 @@ pipeline{
             }
         }
 
-        stage('CHECKSTYLE REPORT'){
-            steps{
-              sh 'mvn checkstyle:checkstyle'
-            }
-        }
+        // stage('CHECKSTYLE REPORT'){
+        //     steps{
+        //       sh 'mvn checkstyle:checkstyle'
+        //     }
+        // }
 
         stage('UPLOAD REPORTS TO SONARQUBE'){
             environment{
@@ -40,7 +40,6 @@ pipeline{
                                                ${sonarScanner}/bin/sonar-scanner \
                                               -Dsonar.junit.reportPaths=target/surefire-reports/*.xml \
                                               -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-reports/jacoco.xml \
-                                              -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
                                               -Dsonar.projectKey=Jenkins \
                                               -Dsonar.projectName=Jenkins \
                                               -Dsonar.projectVersion=1.0 \
