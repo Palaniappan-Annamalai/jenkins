@@ -3,7 +3,7 @@ package com.cs.jenkinsdemo.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestControlle
+@RestController
 public class JenkinsController {
 
     @GetMapping("/jenkins-url")
