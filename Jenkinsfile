@@ -19,18 +19,14 @@ pipeline{
             }
             post{
                 success{
-                    emailext subject: "Build Successfull",
-                          body: '
-                                 "Build ID: ${env.BUILD_ID}"
-                                 The build was successful. Congratulations!',
+                    emailext subject: "Build Successfull - Build ID: ${env.BUILD_ID}",
+                          body: 'The build was successful. Congratulations!',
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
                 }
                 failure{
-                    emailext subject: "Build Failure" ,
-                          body: '
-                                 "Build ID : ${env.BUILD_ID}"
-                                  The build failed. Please investigate.' ,
+                    emailext subject: "Build Failure - Build ID: ${env.BUILD_ID}" ,
+                          body: 'The build failed. Please investigate.' ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
                     echo 'Pipeline failed. Aborting further steps.'
@@ -79,18 +75,14 @@ pipeline{
             }
             post{
                 success{
-                    emailext subject: "Sonar Analysis Successfull",
-                          body: '
-                                 "Build ID: ${env.BUILD_ID}"
-                                 Sonar Analysis was successful. Ready to publish into NEXUS',
+                    emailext subject: "Sonar Analysis Successfull - Build ID: ${env.BUILD_ID}",
+                          body: 'Sonar Analysis was successful. Ready to publish into NEXUS',
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
                 }
                 failure{
-                    emailext subject: "Sonar Analysis Failed" ,
-                          body: '
-                                 "Build ID : ${env.BUILD_ID}"
-                                 Sonar Analysis failed. Please investigate the issues.' ,
+                    emailext subject: "Sonar Analysis Failed - Build ID: ${env.BUILD_ID}" ,
+                          body: 'Sonar Analysis failed. Please investigate the issues.' ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
                     echo 'Pipeline failed. Aborting further steps.'
