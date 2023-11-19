@@ -20,15 +20,15 @@ pipeline{
             post{
                 success{
                     emailext subject: "Build Successfull",
-                          body: 'Build ID: ${env.BUILD_ID}
-                                 The build was successful. Congratulations!',
+                          body: '''Build ID: ${env.BUILD_ID} \
+                                 The build was successful. Congratulations!''',
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
                 }
                 failure{
                     emailext subject: "Build Failure" ,
-                          body: 'Build ID : ${env.BUILD_ID}
-                                 The build failed. Please investigate.' ,
+                          body: '''Build ID : ${env.BUILD_ID} \
+                                 The build failed. Please investigate.''' ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
                     echo 'Pipeline failed. Aborting further steps.'
@@ -78,15 +78,15 @@ pipeline{
             post{
                 success{
                     emailext subject: "Sonar Analysis Successfull",
-                          body: 'Build ID: ${env.BUILD_ID}
-                                 Sonar Analysis was successful. Ready to publish into NEXUS',
+                          body: '''Build ID: ${env.BUILD_ID} \
+                                 Sonar Analysis was successful. Ready to publish into NEXUS''',
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
                 }
                 failure{
                     emailext subject: "Sonar Analysis Failed" ,
-                          body: 'Build ID : ${env.BUILD_ID}
-                                 Sonar Analysis failed. Please investigate the issues.' ,
+                          body: '''Build ID : ${env.BUILD_ID} \
+                                 Sonar Analysis failed. Please investigate the issues.''' ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
                     echo 'Pipeline failed. Aborting further steps.'
