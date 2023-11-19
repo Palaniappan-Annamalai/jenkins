@@ -29,6 +29,7 @@ pipeline{
                           body: 'The build failed. Please investigate.' ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
+                    echo 'Pipeline failed. Aborting further steps.'
                 }
             }
         }
