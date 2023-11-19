@@ -17,6 +17,20 @@ pipeline{
             steps{
                 sh 'mvn package -DskipTests'
             }
+            post{
+                success{
+                    emailext subject: "Build Success with ID: ${env.BUILD_ID}",
+                          body: "The build was successful. Congratulations!",
+                          to: "iyyappana1998@gmail.com",
+                          mimeType: 'text/html'
+                }
+                failure{
+                    emailext subject: "Build Failure with ID : ${env.BUILD_ID}",
+                          body: "The build failed. Please investigate.",
+                          to: "iyyappana1998@gmail.com"
+                          mimeType: 'text/html'
+                }
+            }
         }
         stage('UNIT TEST'){
             steps{
