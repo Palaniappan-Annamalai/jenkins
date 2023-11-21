@@ -112,5 +112,28 @@ pipeline{
             }
         }
 
+        stage('Build Docker Image'){
+             environment {
+                  DOCKER_CREDENTIALS = 'docker-hub'
+                  IMAGE_NAME = 'iyyappan4/my-jenkins-image'
+                  IMAGE_TAG = 'latest'
+            }
+            steps{
+                 script {
+                    def dockerImage = docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
+                }
+            }
+        }
+
+        stage('Publish Image'){
+            steps{
+               script {
+                    docker.withRegistry('https://hub.docker.com/', DOCKER_CREDENTIALS) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
     }
 }
