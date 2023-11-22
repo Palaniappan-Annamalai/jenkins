@@ -125,8 +125,10 @@ pipeline{
 
         stage('Publish Image'){
             steps{
-               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-               sh "docker push ${IMAGE_NAME}"
+               script {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh "docker push ${IMAGE_NAME}"
+               }
             }
              post {
                 always {
