@@ -117,20 +117,16 @@ pipeline{
 
         stage('Build Docker Image'){
             steps{
-                 script {
-                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
-                    docker.build("${IMAGE_NAME}:${BUILD_ID}", "--file Dockerfile .")
-                }
+                docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
             }
         }
 
         stage('Publish Image'){
             steps{
-                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://index.docker.io/v1/']) {
-                        sh "docker push ${IMAGE_NAME}"
-                    }
+                withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://index.docker.io/v1/']) {
+                    sh "docker push ${IMAGE_NAME}"
+                }
             }
-
             post{
                 always{
                     sh 'docker rmi ${IMAGE_NAME}'
