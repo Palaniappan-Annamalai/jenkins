@@ -125,7 +125,7 @@ pipeline{
 
         stage('Publish Image'){
             steps{
-                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://hub.docker.com/']) {
+                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://index.docker.io/v1/']) {
                         sh "docker push ${IMAGE_NAME}"
                     }
             }
