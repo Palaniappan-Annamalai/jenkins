@@ -5,7 +5,7 @@ pipeline{
         maven 'MAVEN3'
     }
     environment{
-         DOCKER_CREDENTIALS = credentials('docker-hub')
+         DOCKER_CREDENTIALS = 'docker-hub'
          IMAGE_NAME = 'iyyappan4/my-jenkins-image'
          IMAGE_TAG = 'latest'
          GIT_BRANCH = 'main'
