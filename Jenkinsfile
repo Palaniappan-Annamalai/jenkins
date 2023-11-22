@@ -126,8 +126,9 @@ pipeline{
         stage('Publish Image'){
             steps{
                script {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh "docker push ${IMAGE_NAME}"
+                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://index.docker.io/v1/']) {
+                        sh "docker push ${IMAGE_NAME}"
+                    }
                }
             }
              post {
