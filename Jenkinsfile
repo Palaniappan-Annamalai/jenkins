@@ -125,19 +125,9 @@ pipeline{
 
         stage('Publish Image'){
             steps{
-               script {
-                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://index.docker.io/v1/']) {
+                    withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://hub.docker.com/']) {
                         sh "docker push ${IMAGE_NAME}"
                     }
-               }
-            }
-             post {
-                always {
-                   script {
-                      sh "docker rmi ${IMAGE_NAME}"
-                      sh 'docker logout'
-                    }
-                }
             }
         }
 
