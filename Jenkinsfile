@@ -138,5 +138,22 @@ pipeline{
             }
         }
 
+        stage('Deploy'){
+            script {
+                    def userInput = input(
+                        id: 'userInput', message: 'Do you want to proceed?', parameters: [
+                            choice(name: 'Proceed', choices: 'Yes', description: 'Approve deployment'),
+                            choice(name: 'Drop', choices: 'No', description: 'Reject deployment')
+                        ]
+                    )
+                    
+                    if (userInput == 'Yes') {
+                        echo 'Proceeding with deployment...'
+                    } else {
+                        error 'Deployment aborted by user.'
+                    }
+                }
+        }
+
     }
 }
