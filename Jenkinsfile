@@ -138,12 +138,12 @@ pipeline{
             }
         }
 
-        stage('Deploy'){
+        stage('Deploy DEV'){
             steps{
                 script {
                     def userInput = input(
                         id: 'userInput', message: 'Do you want to Deploy?', parameters: [
-                            choice(name: 'Proceed', choices: ['Yes', 'No']),
+                            choice(choices: ['Yes', 'No']),
                         ]
                     )
 
@@ -156,5 +156,58 @@ pipeline{
             }
         }
 
+        stage('Deploy QA'){
+            steps{
+                script {
+                    def userInput = input(
+                        id: 'userInput', message: 'Do you want to Deploy?', parameters: [
+                            choice(choices: ['Yes', 'No']),
+                        ]
+                    )
+
+                    if (userInput == 'Yes') {
+                        echo 'Proceeding with deployment...'
+                    } else {
+                        error 'Deployment aborted by user.'
+                    }
+                }
+            }
+        }
+
+        stage('Deploy UAT'){
+            steps{
+                script {
+                    def userInput = input(
+                        id: 'userInput', message: 'Do you want to Deploy?', parameters: [
+                            choice(choices: ['Yes', 'No']),
+                        ]
+                    )
+
+                    if (userInput == 'Yes') {
+                        echo 'Proceeding with deployment...'
+                    } else {
+                        error 'Deployment aborted by user.'
+                    }
+                }
+            }
+        }
+
+        stage('Deploy Production'){
+            steps{
+                script {
+                    def userInput = input(
+                        id: 'userInput', message: 'Do you want to Deploy?', parameters: [
+                            choice(choices: ['Yes', 'No']),
+                        ]
+                    )
+
+                    if (userInput == 'Yes') {
+                        echo 'Proceeding with deployment...'
+                    } else {
+                        error 'Deployment aborted by user.'
+                    }
+                }
+            }
+        }
     }
 }
