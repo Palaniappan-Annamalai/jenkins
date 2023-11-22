@@ -117,7 +117,9 @@ pipeline{
 
         stage('Build Docker Image'){
             steps{
-                docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
+                script{
+                   docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
+                }
             }
         }
 
