@@ -142,9 +142,8 @@ pipeline{
             steps{
                 script {
                     def userInput = input(
-                        id: 'userInput', message: 'Do you want to proceed?', parameters: [
-                            choice(name: 'Proceed', choices: 'Yes', description: 'Approve deployment'),
-                            choice(name: 'Drop', choices: 'No', description: 'Reject deployment')
+                        id: 'userInput', message: 'Do you want to Deploy?', parameters: [
+                            choice(name: 'Proceed', choices: ['Yes', 'No']),
                         ]
                     )
 
