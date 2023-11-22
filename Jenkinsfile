@@ -6,7 +6,7 @@ pipeline{
     }
     environment{
          DOCKER_CREDENTIALS = 'docker-hub'
-         IMAGE_NAME = 'iyyappan4/my-jenkins-image'
+         IMAGE_NAME = 'iyyappan24/my-jenkins-image'
          IMAGE_TAG = 'latest'
          GIT_BRANCH = 'main'
     }
