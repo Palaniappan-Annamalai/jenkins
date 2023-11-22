@@ -5,7 +5,7 @@ pipeline{
         maven 'MAVEN3'
     }
     environment{
-         DOCKER_CREDENTIALS = 'docker-hub'
+         DOCKER_CREDENTIALS = credentials('docker-hub')
          IMAGE_NAME = 'iyyappan4/my-jenkins-image'
          IMAGE_TAG = 'latest'
          GIT_BRANCH = 'main'
@@ -125,9 +125,14 @@ pipeline{
 
         stage('Publish Image'){
             steps{
-               script {
-                    docker.withRegistry('https://hub.docker.com/', DOCKER_CREDENTIALS) {
-                        dockerImage.push()
+               withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://hub.docker.com/']) {
+                        sh "docker push ${IMAGE_NAME}"
+                    }
+            }
+             post {
+                always {
+                   script {
+                      sh "docker logout"
                     }
                 }
             }
