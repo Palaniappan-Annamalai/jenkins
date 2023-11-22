@@ -118,7 +118,8 @@ pipeline{
         stage('Build Docker Image'){
             steps{
                  script {
-                    def dockerImage = docker.build("${IMAGE_NAME}:${IMAGE_TAG}:${BUILD_ID}", "--file Dockerfile .")
+                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
+                    docker.build("${IMAGE_NAME}:${BUILD_ID}", "--file Dockerfile .")
                 }
             }
         }
