@@ -129,6 +129,13 @@ pipeline{
                         sh "docker push ${IMAGE_NAME}"
                     }
             }
+
+            post{
+                always{
+                    sh 'docker rmi ${IMAGE_NAME}'
+                    sh 'docker logout'
+                }
+            }
         }
 
     }
