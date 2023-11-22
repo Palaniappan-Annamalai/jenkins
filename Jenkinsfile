@@ -5,7 +5,10 @@ pipeline{
         maven 'MAVEN3'
     }
     environment{
-        GIT_BRANCH = 'main'
+         DOCKER_CREDENTIALS = 'docker-hub'
+         IMAGE_NAME = 'iyyappan4/my-jenkins-image'
+         IMAGE_TAG = 'latest'
+         GIT_BRANCH = 'main'
     }
     stages{
         stage('FETCH CODE'){
@@ -113,11 +116,6 @@ pipeline{
         }
 
         stage('Build Docker Image'){
-             environment {
-                  DOCKER_CREDENTIALS = 'docker-hub'
-                  IMAGE_NAME = 'iyyappan4/my-jenkins-image'
-                  IMAGE_TAG = 'latest'
-            }
             steps{
                  script {
                     def dockerImage = docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
