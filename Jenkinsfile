@@ -125,14 +125,14 @@ pipeline{
 
         stage('Publish Image'){
             steps{
-               withDockerRegistry([credentialsId: DOCKER_CREDENTIALS, url: 'https://hub.docker.com/']) {
-                        sh "docker push ${IMAGE_NAME}"
-                    }
+               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+               sh "docker push ${IMAGE_NAME}"
             }
              post {
                 always {
                    script {
-                      sh "docker logout"
+                      sh "docker rmi ${IMAGE_NAME}"
+                      sh 'docker logout'
                     }
                 }
             }
