@@ -143,7 +143,7 @@ pipeline{
                 script {
                     def userInput = input(
                         id: 'userInput', message: 'Do you want to Deploy?', parameters: [
-                            choice(name : 'Proceed', choices: ['Yes', 'No']),
+                            choice(name : 'Proceed', choices: 'Yes')
                         ]
                     )
 
@@ -161,7 +161,7 @@ pipeline{
                 script {
                     def userInput = input(
                         id: 'userInput', message: 'Do you want to Deploy?', parameters: [
-                            choice(name : 'Proceed', choices: ['Yes', 'No']),
+                            choice(name : 'Proceed', choices: 'Yes')
                         ]
                     )
 
@@ -179,7 +179,7 @@ pipeline{
                 script {
                     def userInput = input(
                         id: 'userInput', message: 'Do you want to Deploy?', parameters: [
-                            choice(name : 'Proceed', choices: ['Yes', 'No']),
+                            choice(name : 'Proceed', choices: 'Yes')
                         ]
                     )
 
@@ -198,7 +198,7 @@ pipeline{
                     def userInput = input(
                         id: 'userInput', message: 'Do you want to Deploy?', parameters: [
                             //choice(name : 'Proceed', choices: ['Yes', 'No']),
-                            choice(name : 'Select and Proceed', choices: 'Yes')
+                            choice(name : 'Proceed', choices: 'Yes')
                         ]
                     )
 
