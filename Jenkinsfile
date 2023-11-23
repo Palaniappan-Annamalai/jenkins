@@ -31,12 +31,15 @@ pipeline{
                     }
                   }
                   failure{
-                    emailext subject: "Build Failure - Build ID: ${env.BUILD_ID}" ,
+                    script{
+                      def message = "The build was failed. \nPlease analyse the issue."
+                      emailext subject: "Build Failure - Build ID: ${env.BUILD_ID}" ,
                           body: 'The build failed. Please investigate.' ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
-                    echo 'Pipeline failed. Aborting further steps.'
-                  }
+                      echo 'Pipeline failed. Aborting further steps.'
+                    }
+                  }  
             }
         }
         stage('UNIT TEST'){
@@ -81,17 +84,23 @@ pipeline{
             }
             post{
                 success{
-                    emailext subject: "Sonar Analysis Successfull - Build ID: ${env.BUILD_ID}",
-                          body: 'Sonar Analysis was successful. Ready to publish into NEXUS',
+                    script{
+                        def message = "Sonar Analysis was successful. \nReady to publish into NEXUS"
+                        emailext subject: "Sonar Analysis Successfull - Build ID: ${env.BUILD_ID}",
+                          body: message,
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
+                    }
                 }
                 failure{
-                    emailext subject: "Sonar Analysis Failed - Build ID: ${env.BUILD_ID}" ,
-                          body: 'Sonar Analysis failed. Please investigate the issues.' ,
+                    script{
+                        def message = "Sonar Analysis failed. \nPlease investigate the issues."
+                        emailext subject: "Sonar Analysis Failed - Build ID: ${env.BUILD_ID}" ,
+                          body: message ,
                           to: 'root@iyyappan' ,
                           mimeType: 'text/html'
-                    echo 'Pipeline failed. Aborting further steps.'
+                        echo 'Pipeline failed. Aborting further steps.'
+                    }
                 }
             }  
         }
