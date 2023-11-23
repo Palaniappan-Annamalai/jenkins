@@ -21,12 +21,12 @@ pipeline{
                 sh 'mvn package -DskipTests'
             }
             post{
-                  def message = """
+                  success{
+                    def message = """
                            The build was successful. 
                            Congratulations!
                            Stage is Passed.
                         """
-                  success{
                     emailext subject: "Build Successfull - Build ID: ${env.BUILD_ID}",
                           body: message,
                           to: 'root@iyyappan',
