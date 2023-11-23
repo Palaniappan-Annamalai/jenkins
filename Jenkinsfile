@@ -33,9 +33,9 @@ pipeline{
         stage("Notify"){
             steps{
                 script{
-                        def message = """
-                           The build was successful. \n
-                           Congratulations! \n
+                        def message = 
+                        """The build was successful.
+                           Congratulations!
                            Stage is Passed.
                         """
                         emailext subject: "Build Successfull - Build ID: ${env.BUILD_ID}",
