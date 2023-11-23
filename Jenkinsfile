@@ -21,9 +21,6 @@ pipeline{
                 sh 'mvn package -DskipTests'
             }
             post{
-                  success{
-
-                  }
                   failure{
                     emailext subject: "Build Failure - Build ID: ${env.BUILD_ID}" ,
                           body: 'The build failed. Please investigate.' ,
