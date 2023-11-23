@@ -118,7 +118,7 @@ pipeline{
         stage('Build Docker Image'){
             steps{
                 script{
-                   sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f Dockerfile .'
+                   sh 'docker build -t ${IMAGE_NAME}:${BUILD_ID} -f Dockerfile .'
                    //docker.build("${IMAGE_NAME}:${IMAGE_TAG}", "--file Dockerfile .")
                 }
             }
