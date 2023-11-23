@@ -21,7 +21,6 @@ pipeline{
                 sh 'mvn package -DskipTests'
             }
             post{
-                script{
                   def message = """
                            The build was successful. 
                            Congratulations!
@@ -40,7 +39,6 @@ pipeline{
                           mimeType: 'text/html'
                     echo 'Pipeline failed. Aborting further steps.'
                   }
-                }
             }
         }
         stage('UNIT TEST'){
