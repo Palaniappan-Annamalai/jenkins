@@ -132,7 +132,7 @@ pipeline{
             }
             post{
                 always{
-                    sh 'docker rmi ${IMAGE_NAME}'
+                    sh 'docker rmi ${IMAGE_NAME}:${BUILD_ID}'
                     sh 'docker logout'
                 }
             }
