@@ -33,11 +33,7 @@ pipeline{
         stage("Notify"){
             steps{
                 script{
-                        def message = 
-                        """The build was successful.
-                           Congratulations!
-                           Stage is Passed.
-                        """
+                        def message = "The build was successful. \n Congratulations! \n Stage is Passed."
                         emailext subject: "Build Successfull - Build ID: ${env.BUILD_ID}",
                           body: message,
                           to: 'root@iyyappan',
