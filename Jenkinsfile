@@ -32,6 +32,7 @@ pipeline{
         }
         stage("Notify"){
             steps{
+                script{
                         def message = """
                            The build was successful. 
                            Congratulations!
@@ -42,6 +43,7 @@ pipeline{
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
                 }
+            } 
         }
         stage('UNIT TEST'){
             steps{
