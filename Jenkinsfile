@@ -22,7 +22,8 @@ pipeline{
             }
             post{
                   success{
-                    def message = """
+                    steps{
+                        def message = """
                            The build was successful. 
                            Congratulations!
                            Stage is Passed.
@@ -31,6 +32,7 @@ pipeline{
                           body: message,
                           to: 'root@iyyappan',
                           mimeType: 'text/html'
+                    }
                   }
                   failure{
                     emailext subject: "Build Failure - Build ID: ${env.BUILD_ID}" ,
