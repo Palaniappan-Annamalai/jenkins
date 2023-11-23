@@ -22,17 +22,7 @@ pipeline{
             }
             post{
                   success{
-                    steps{
-                        def message = """
-                           The build was successful. 
-                           Congratulations!
-                           Stage is Passed.
-                        """
-                    emailext subject: "Build Successfull - Build ID: ${env.BUILD_ID}",
-                          body: message,
-                          to: 'root@iyyappan',
-                          mimeType: 'text/html'
-                    }
+
                   }
                   failure{
                     emailext subject: "Build Failure - Build ID: ${env.BUILD_ID}" ,
@@ -42,6 +32,19 @@ pipeline{
                     echo 'Pipeline failed. Aborting further steps.'
                   }
             }
+        }
+        stage("Notify"){
+            steps{
+                        def message = """
+                           The build was successful. 
+                           Congratulations!
+                           Stage is Passed.
+                        """
+                        emailext subject: "Build Successfull - Build ID: ${env.BUILD_ID}",
+                          body: message,
+                          to: 'root@iyyappan',
+                          mimeType: 'text/html'
+                }
         }
         stage('UNIT TEST'){
             steps{
